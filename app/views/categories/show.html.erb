@@ -1,0 +1,18 @@
+<h1> View Categories </h1>
+
+<table>
+  <thead>
+    <tr> Category Name </tr>
+    <tr> Category Body </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td> <%= @category.category_name %> </td>
+      <td> <%= @category.category_body %> </td>
+    </tr>
+  </tbody>
+
+  <td> <%= link_to "Home", categories_path %> </td>
+  <td> <%= link_to "View Tasks", category_tasks_path(category_id: @category.id) %> </td>
+</table>

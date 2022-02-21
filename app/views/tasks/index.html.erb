@@ -1,0 +1,26 @@
+<h1> Task List </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> Task Name </th>
+      <th> Task Body </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td> <%= task.task_name%> </td>
+        <td> <%= task.task_body%> </td>
+        <td> <button> <%= link_to "View", category_task_path(task.category_id, task.id) %> </button> </td>
+        <td> <button> <%= link_to "Edit", edit_category_task_path(task.category_id, task.id) %> </button> </td>
+        <td> <button> <%= link_to "Delete", category_task_path(task.category_id, task.id), method: :delete, :data => {:confirm => 'Are you sure you want to delete this task?'} %> </button> </td>
+      </tr>
+    <% end %>
+
+      <tr>
+        <td> <button> <%= link_to "New Task", new_category_task_path %> </button> </td>
+      </tr>
+  </tbody>
+</table>

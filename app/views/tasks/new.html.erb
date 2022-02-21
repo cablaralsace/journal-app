@@ -1,0 +1,22 @@
+<%=  form_with scope: :task, url: category_tasks_path, method: :post, locale: true do |form| %>
+
+  <h1> New Task </h1>
+
+  <%= form.label :task_name %>
+  <%= form.text_field :task_name %>
+
+  <%= form.label :task_body %>
+  <%= form.text_field :task_body %>
+
+  <%= form.submit %>
+
+
+  <% if @task.errors.any? %>
+    <ul>
+      <% @task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <%end%>
+    </ul>
+  <%end%>
+  
+<% end %>

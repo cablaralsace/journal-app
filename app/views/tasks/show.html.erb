@@ -1,0 +1,18 @@
+<h1> View Tasks </h1>
+
+<table>
+  <thead>
+    <tr> Task Name </tr>
+    <tr> Task Body </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td> <%= @task.task_name %> </td>
+      <td> <%= @task.task_body %> </td>
+    </tr>
+  </tbody>
+
+  <td> <%= link_to "Back to Tasks", category_tasks_path %> </td>
+  <td> <%= link_to "Back to Categories", categories_path %> </td>
+</table>
