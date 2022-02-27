@@ -1,13 +1,22 @@
 <%=  form_with scope: :task, url: category_task_path, method: :put, locale: true do |form| %>
 
-  <h1> Edit Task </h1>
+  <h1> Edit Task Details </h1>
+  <br/>
 
-  <%= form.label :task_name %>
-  <%= form.text_field :task_name %>
+  <div class="field form-group">
+    <%= form.label :task_name %>
+    <%= form.text_field :task_name, class:"form-control" %>
+  </div><br/>
 
-  <%= form.label :task_body %>
-  <%= form.text_field :task_body %>
+  <div class="field form-group">
+    <%= form.label :task_body %>
+    <%= form.text_field :task_body, class:"form-control" %>
+  </div><br/>
 
-  <%= form.submit %>
+  <div class="actions">
+    <%= form.submit "Save Changes", class: "btn btn-dark" %>
+  </div><br/>
+
+  <%= render 'layouts/task_errors' %>
 
 <% end %>

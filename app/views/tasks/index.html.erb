@@ -1,10 +1,13 @@
-<h1> Task List </h1>
+<h1> <%= @category.category_name %> : Task List </h1>
 
-<table>
-  <thead>
+<table class="table table-bordered table-hover">
+   <thead class="table-dark">
     <tr>
       <th> Task Name </th>
       <th> Task Body </th>
+      <th> Date Created </th>
+      <th> Date Updated </th>
+      <th></th>
     </tr>
   </thead>
 
@@ -13,14 +16,18 @@
       <tr>
         <td> <%= task.task_name%> </td>
         <td> <%= task.task_body%> </td>
-        <td> <button> <%= link_to "View", category_task_path(task.category_id, task.id) %> </button> </td>
-        <td> <button> <%= link_to "Edit", edit_category_task_path(task.category_id, task.id) %> </button> </td>
-        <td> <button> <%= link_to "Delete", category_task_path(task.category_id, task.id), method: :delete, :data => {:confirm => 'Are you sure you want to delete this task?'} %> </button> </td>
+        <td> <%= task.created_at %> </td>
+        <td> <%= task.updated_at %> </td>
+        <td>
+          <%= link_to "View Task Details", category_task_path(task.category_id, task.id), class: "btn btn-outline-dark btn-sm" %>
+          <%# <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-outline-dark btn-sm" %>
+          <%# <%= link_to "Delete", category_task_path(task.category_id, task.id), method: :delete, :data => {:confirm => 'Are you sure you want to delete this task?'}, class: "btn btn-outline-dark btn-sm" %> 
+        </td>
       </tr>
     <% end %>
-
-      <tr>
-        <td> <button> <%= link_to "New Task", new_category_task_path %> </button> </td>
-      </tr>
   </tbody>
 </table>
+
+
+<%= link_to "Add Task", new_category_task_path, class: "btn btn-outline-dark btn-sm" %> 
+<%= link_to "Back to Categories", categories_path, class: "btn btn-outline-dark btn-sm" %> 
