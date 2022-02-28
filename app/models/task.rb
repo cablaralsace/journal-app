@@ -4,6 +4,6 @@ class Task < ApplicationRecord
   belongs_to :user
 
   # Validation
-  validates :task_name, presence: true, uniqueness: true
-  validates :task_body, presence: true, uniqueness: true
+  validates :task_name, presence: true
+  validates :task_body, presence: true
 end
