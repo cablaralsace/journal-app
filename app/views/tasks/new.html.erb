@@ -1,28 +1,31 @@
 <%=  form_with scope: :task, url: category_tasks_path, method: :post, locale: true do |form| %>
 
-  <h1> Create New Task </h1>
-  <br/>
+  <div class="card">
+    <div class="card-header">
+      <h1>Create New Task</h1>
+    </div>
 
-  <div class="field form-group">
-    <%= form.label :task_name %>
-    <%= form.text_field :task_name, class: "form-control" %>
-  </div><br/>
+    <div class="card-body">
+      <div class="field form-group">
+        <%= form.label :task %>
+        <%= form.text_field :task_name, class: "form-control" %>
+      </div><br/>
 
+      <div class="field form-group">
+        <%= form.label :details %>
+        <%= form.text_field :task_body, class: "form-control" %>
+      </div><br/>
 
-  <div class="field form-group">
-    <%= form.label :task_body %>
-    <%= form.text_field :task_body, class: "form-control" %>
-  </div><br/>
-
-  <div class="field form-group">
-    <% form.label :user_id %>
-    <%= form.number_field :user_id, id: :task_user_id, class: "form-control", value: current_user.id, type: :hidden %>
+      <div class="field form-group">
+        <% form.label :user_id %>
+        <%= form.number_field :user_id, id: :task_user_id, class: "form-control", value: current_user.id, type: :hidden %>
+      </div>
+    
+      <div class="actions">
+        <%= form.submit "Add Task", class: "btn btn-dark" %>
+      </div><br/>
+    </div>
   </div>
-  
-  <div class="actions">
-    <%= form.submit "Add Task", class: "btn btn-dark" %>
-  </div><br/>
-
+  <br/>
   <%= render 'layouts/task_errors' %>
-  
 <% end %>

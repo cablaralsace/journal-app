@@ -1,22 +1,28 @@
 <%=  form_with scope: :category, url: category_path, method: :put, locale: true do |form| %>
 
-  <h1> Edit Category Details </h1>
+  <div class="card">
+
+    <div class="card-header">
+      <h1>Edit Category Details</h1>
+    </div>
+
+    <div class="card-body">
+      <div class="field form-group">
+        <%= form.label :Title %>
+        <%= form.text_field :category_name, class: "form-control" %>
+      </div><br/>
+      <div class="field form-group">
+        <%= form.label :Description %>
+        <%= form.text_field :category_body, class: "form-control" %>
+      </div><br/>
+      <div class="actions">
+        <%= form.submit "Save Changes", class: "btn btn-dark btn-sm" %>
+        <%= link_to "Delete Category", category_path(@category.id), method: :delete, :data => {:confirm => 'Are you sure you want to delete this category?'}, class: "btn btn-danger btn-sm" %>
+      </div>
+    </div>
+
+  </div>
+
   <br/>
-
-  <div class="field form-group">
-    <%= form.label :Title %>
-    <%= form.text_field :category_name, class: "form-control" %>
-  </div><br/>
-
-  <div class="field form-group">
-    <%= form.label :Description %>
-    <%= form.text_field :category_body, class: "form-control" %>
-  </div><br/>
-
-  <div class="actions">
-    <%= form.submit "Save Changes", class: "btn btn-dark" %>
-  </div><br/>
-
   <%= render 'layouts/category_errors' %>
-
 <% end %>
