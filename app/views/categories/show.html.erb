@@ -1,26 +1,21 @@
-<h1> Category Details </h1>
+<div class="card">
+  <div class="card-header">
+    <h1>Category Details</h1>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Title: </h5>
+    <p class="card-text"><%= @category.category_name %></p>
+    <h5 class="card-title">Description: </h5>
+    <p class="card-text"><%= @category.category_body %></p>
+    <br/>
+    
+    <%= link_to "Edit", edit_category_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
+    <%= link_to "Delete", category_path(@category.id), method: :delete, :data => {:confirm => 'Are you sure you want to delete this category?'}, class: "btn btn-outline-dark btn-sm" %>
+    <%= link_to "View Tasks" , category_tasks_path(category_id: @category.id), class: "btn btn-outline-dark btn-sm" %>
+  </div>
+</div>
 
-<table class="table table-bordered table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th> Category Name </th>
-      <th> Category Body </th>
-      <th> Date Created </th>
-      <th> Date Updated </th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td> <%= @category.category_name %> </td>
-      <td> <%= @category.category_body %> </td>
-      <td> <%= @category.created_at %> </td>
-      <td> <%= @category.updated_at %> </td>
-      <td> <%= link_to "View All Tasks", category_tasks_path(category_id: @category.id), class: "btn btn-outline-dark btn-sm" %> </td>
-    </tr>
-  </tbody>
-</table>
-
+<br/>
 
 <%= link_to "Back to Categories List", categories_path, class: "btn btn-outline-dark btn-sm" %>
+

@@ -1,15 +1,29 @@
 <%# <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p> %>
 <%# <%= image_tag("youdonote-white.jpg", :alt => "rss feed", :class => "rounded float-end", :size => "500x550") %> 
-  
-<div class="card bg-white text-dark border-0 float-end">
-  <%= image_tag("youdonote-white.jpg", :alt => "rss feed", :class => "rounded float-end", :style => "height:80vh; width:80vw;" ) %>
-  <div class="card-img-overlay">
-    <br/><br/><br/><br/><br/><br/>
-    <h1 class="card-title"> You Do Note: The Web App</h1>
-    <%# <%# <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> %>
-    <p class="card-text">Categorize and Organize your tasks!</p>
-    <br/>
-    <%= link_to "Get Started!", new_user_registration_path, class: "btn btn-dark btn-lg" %>
+<% if user_signed_in? %>
+  <div class="card bg-white text-dark border-0 float-end">
+    <%= image_tag("youdonote-white.jpg", :alt => "rss feed", :class => "rounded float-end", :style => "height:80vh; width:80vw;" ) %>
+    <div class="card-img-overlay">
+      <br/><br/><br/><br/><br/><br/><br/>
+      <h1 class="card-title"> You Do Note: The Web App</h1>
+      <%# <%# <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> %>
+      <p class="card-text">Categorize and Organize your tasks!</p>
+      <br/>
+      <%= link_to "Organize My Lists", categories_path, class: "btn btn-dark btn-lg" %>
+    </div>
   </div>
-</div>
+
+<% else %>
+  <div class="card bg-white text-dark border-0 float-end">
+    <%= image_tag("youdonote-white.jpg", :alt => "rss feed", :class => "rounded float-end", :style => "height:80vh; width:80vw;" ) %>
+    <div class="card-img-overlay">
+      <br/><br/><br/><br/><br/><br/>
+      <h1 class="card-title"> You Do Note: The Web App</h1>
+      <%# <%# <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> %>
+      <p class="card-text">Categorize and Organize your tasks!</p>
+      <br/>
+      <%= link_to "Get Started!", new_user_registration_path, class: "btn btn-dark btn-lg" %>
+    </div>
+  </div>
+<% end %>

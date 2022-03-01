@@ -17,10 +17,10 @@ User Story #3: As a User, I want to view a category to show the category's detai
 User Story #4: As a User, I want to create a task for a specific category so that I can organize tasks quicker. <br/>
 User Story #5: As a User, I want to edit a task to update task's details. <br/>
 User Story #6: As a User, I want to view a task to show task's details. <br/>
-User Story #6: As a User, I want to delete a task to lessen my unnecessary daily tasks. <br/>
-User Story #7: As a User, I want to view my tasks for today for me to remind what are my priorities for today. <br/>
-User Story #8: As a User, I want to create my account so that I can have my own credentials. <br/>
-User Story #9: As a User, I want to login my account so that I can access my account and link my own tasks. <br/>
+User Story #7: As a User, I want to delete a task to lessen my unnecessary daily tasks. <br/>
+User Story #8: As a User, I want to view my tasks for today for me to remind what are my priorities for today. <br/>
+User Story #9: As a User, I want to create my account so that I can have my own credentials. <br/>
+User Story #10: As a User, I want to login my account so that I can access my account and link my own tasks. <br/>
 
 
 **Summary of Constraints**
