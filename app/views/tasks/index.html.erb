@@ -7,6 +7,8 @@
       <th class="text-nowrap"> Details </th>
       <th class="text-nowrap"> Date Created </th>
       <th class="text-nowrap"> Date Updated </th>
+      <th class="text-nowrap"> Deadline  </th>
+      <th class="text-nowrap"> Status </th>
       <%# <th></th> %>
     </tr>
   </thead>
@@ -19,6 +21,8 @@
         <td> <%= task.task_body%> </td>
         <td class="text-nowrap"> <%= task.created_at %> </td>
         <td class="text-nowrap"> <%= task.updated_at %> </td>
+        <td class="text-nowrap"> <%= task.deadline %> </td>
+        <td class="text-nowrap"> <%= task.status %> </td>
         <%# <td> %>
           <%# <%= link_to "View Task Details", category_task_path(task.category_id, task.id), class: "btn btn-outline-dark btn-sm" %> 
           <%# <%= link_to "Edit", edit_category_task_path(task.category_id, task.id), class: "btn btn-outline-dark btn-sm" %>
@@ -28,8 +32,22 @@
       <% end %>
     <% end %>
   </tbody>
-</table>
+</table> 
+
+<p>
+  <button class="btn btn-outline-dark btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Sort Tasks
+  </button>
+  <%= link_to "Add New Task", new_category_task_path, class: "btn btn-outline-dark btn-sm" %> 
+  <%= link_to "Back to Categories", categories_path, class: "btn btn-outline-dark btn-sm" %> 
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <li class="list-group-item"> <%= link_to "Sort by Deadline", :sort => "deadline" %> </li>
+    <li class="list-group-item"> <%= link_to "Sort by Status", :sort => "task_status" %> </li>
+  </div>
+</div>
+
+<br/>
 
 
-<%= link_to "Add New Task", new_category_task_path, class: "btn btn-outline-dark btn-sm" %> 
-<%= link_to "Back to Categories", categories_path, class: "btn btn-outline-dark btn-sm" %> 

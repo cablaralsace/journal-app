@@ -17,9 +17,32 @@
       </div><br/>
 
       <div class="field form-group">
-        <% form.label :user_id %>
+        <% form.label :"User ID" %>
         <%= form.number_field :user_id, id: :task_user_id, class: "form-control", value: current_user.id, type: :hidden %>
       </div>
+
+      <div class="field form-group">
+        <%= form.label :deadline %>
+        <%= form.date_field :deadline, class: "form-control" %>
+      </div><br/>
+
+      <div class="field form-group">
+        <%= form.label :"Status" %>
+        <div class="form-check">
+          <%= form.radio_button :status, 'Pending' %>
+          <%= form.label :"Pending", class: "form-check-label", for: "flexRadioDefault1" %>
+        </div>
+
+        <div class="form-check">
+          <%= form.radio_button :status, 'On-going' %>
+          <%= form.label :"On-going", class: "form-check-label", for: "flexRadioDefault1" %>
+        </div>
+
+        <div class="form-check">
+          <%= form.radio_button :status, 'Done' %>
+          <%= form.label :"Done", class: "form-check-label", for: "flexRadioDefault1" %>
+        </div>
+      </div><br/>
     
       <div class="actions">
         <%= form.submit "Add Task", class: "btn btn-dark" %>

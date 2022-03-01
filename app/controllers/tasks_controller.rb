@@ -6,7 +6,15 @@ class TasksController < ApplicationController
 
   def index
     @category_id = params[:category_id]
-    @tasks = Category.find(params[:category_id]).tasks
+    if params[:sort] == "deadline"
+      @tasks = Category.find(params[:category_id]).tasks.order('deadline ASC')
+    elsif params[:sort] == "task_status"
+      @tasks = Category.find(params[:category_id]).tasks.order('status ASC')
+    # elsif params[:sort] == "status_done"
+    #   @tasks = Category.find(params[:category_id]).includes(:tasks).where(tasks.status = 'done')
+    else
+      @tasks = Category.find(params[:category_id]).tasks
+    end
   end
 
   def show
@@ -60,6 +68,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:task_name, :task_body, :category_id, :user_id)
+    params.require(:task).permit(:task_name, :task_body, :category_id, :user_id, :deadline, :status)
   end
 end

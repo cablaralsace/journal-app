@@ -4,9 +4,13 @@
   </div>
   <div class="card-body">
     <h5 class="card-title">Task: </h5>
-    <p class="card-text"><%= @task.task_name %></p>
+      <p class="card-text"><%= @task.task_name %></p>
     <h5 class="card-title">Details: </h5>
-    <p class="card-text"><%= @task.task_body %></p>
+      <p class="card-text"><%= @task.task_body %></p>
+    <h5 class= "card-title"> Deadline: </h5>
+      <p class="card-text"><%= @task.deadline %> </p>
+    <h5 class= "card-title"> Status: </h5>
+      <p class="card-text"><%= @task.status %></p>
     <br/>
     <%= link_to "Edit", edit_category_task_path(@task.category_id, @task.id), class: "btn btn-warning btn-sm" %>
     <%= link_to "Delete", category_task_path(@task.category_id, @task.id), method: :delete, :data => {:confirm => 'Are you sure you want to delete this task?'}, class: "btn btn-danger btn-sm" %>
