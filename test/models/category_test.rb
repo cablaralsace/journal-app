@@ -4,7 +4,8 @@ class CategoryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-  test "should not save Category without category_name" do
+  
+  test "should create a category" do
     category = Category.new
     category.category_name = nil
     category.category_body = 'Camera to-dos'

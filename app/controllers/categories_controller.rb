@@ -6,17 +6,26 @@ class CategoriesController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.all
-    @tasks = Task.all
+    @categories = current_user.categories 
+    # SELECT categories.* FROM categories WHERE user_id=3
+    @tasks = current_user.tasks
+    # SELECT tasks.* FROM tasks WHERE category_id=
+
+    # @categories = Category.all
+    # @tasks = Task.all
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
+    # @category = Category.find(params[:id]) - di nakascope kay current_user so makikita pa din lahat ng categories ng ibang users
   end
 
   def new
     # @category = Category.new
+    
     @category = current_user.categories.build
+    # build method same with new but instantiates with the defined association
+    # just like new, only instantiates still doesnt save
   end
 
   def create
@@ -30,11 +39,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    # @category = Category.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
+    # @category = Category.find(params[:id])
 
     if @category.update(category_params)
       redirect_to categories_path, notice: 'Category was successfully updated.'
@@ -44,7 +53,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    # @category = Category.find(params[:id])
 
     @category.destroy
     redirect_to categories_path, notice: 'Category was successfully deleted.'

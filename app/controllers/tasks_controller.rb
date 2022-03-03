@@ -4,16 +4,20 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :get_category
 
+
   def index
     @category_id = params[:category_id]
     if params[:sort] == "deadline"
-      @tasks = Category.find(params[:category_id]).tasks.order('deadline ASC')
+      @tasks = current_user.categories.find(params[:category_id]).tasks.order('deadline ASC')
+      # @tasks = Category.find(params[:category_id]).tasks.order('deadline ASC')
     elsif params[:sort] == "task_status"
-      @tasks = Category.find(params[:category_id]).tasks.order('status ASC')
+      @tasks = current_user.categories.find(params[:category_id]).tasks.order('status ASC')
+      # @tasks = Category.find(params[:category_id]).tasks.order('status ASC')
     # elsif params[:sort] == "status_done"
     #   @tasks = Category.find(params[:category_id]).includes(:tasks).where(tasks.status = 'done')
     else
-      @tasks = Category.find(params[:category_id]).tasks
+      @tasks = current_user.categories.find(params[:category_id]).tasks
+      # @tasks = Category.find(params[:category_id]).tasks      
     end
   end
 
@@ -27,7 +31,6 @@ class TasksController < ApplicationController
 
   def new
     @task = @category.tasks.build
-    #  .build para sa association ng has many
   end
 
   def create
@@ -41,11 +44,13 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    # @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
+    # @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
 
     if @task.update(task_params)
       redirect_to category_tasks_path, notice: 'Task was successfully updated.'
@@ -55,7 +60,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = Task.find(params[:id])
+    # @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
 
     @task.destroy
     redirect_to category_tasks_path, notice: 'Task was successfully deleted.'
@@ -64,8 +70,10 @@ class TasksController < ApplicationController
   private
 
   def get_category
-    @category = Category.find(params[:category_id])
+    # @category = Category.find(params[:category_id])
+    @category = current_user.categories.find(params[:category_id])
   end
+
 
   def task_params
     params.require(:task).permit(:task_name, :task_body, :category_id, :user_id, :deadline, :status)
