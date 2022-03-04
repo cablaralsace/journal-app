@@ -12,22 +12,22 @@ class TasksController < ApplicationController
   def due_today
     # @tasks = @category.tasks.where(deadline: Date.today)
     if params[:sort] == "due_today_ongoing"
-      @tasks = current_user.tasks.where(deadline: Date.today).order('status ASC').and(current_user.tasks.where(status: "On-going"))
+      @tasks = current_user.tasks.where(deadline: Date.current).order('status ASC').and(current_user.tasks.where(status: "On-going"))
     elsif params[:sort] == "due_today_pending"
-      @tasks = current_user.tasks.where(deadline: Date.today).order('status ASC').and(current_user.tasks.where(status: "Pending"))
+      @tasks = current_user.tasks.where(deadline: Date.current).order('status ASC').and(current_user.tasks.where(status: "Pending"))
     else
-      @tasks = current_user.tasks.where(deadline: Date.today).order('status ASC').and((current_user.tasks.where(status: "Pending")).or((current_user.tasks.where(status: "On-going"))))
+      @tasks = current_user.tasks.where(deadline: Date.current).order('status ASC').and((current_user.tasks.where(status: "Pending")).or((current_user.tasks.where(status: "On-going"))))
     # redirect_to tasks_due_today_path
     end
   end
 
   def backlog
     if params[:sort] == "backlog_ongoing"
-      @tasks = current_user.tasks.where('deadline < ?', Date.today).order('status ASC').and(current_user.tasks.where(status: "On-going"))
+      @tasks = current_user.tasks.where('deadline < ?', Date.current).order('status ASC').and(current_user.tasks.where(status: "On-going"))
     elsif params[:sort] == "backlog_pending"
-      @tasks = current_user.tasks.where('deadline < ?', Date.today).order('status ASC').and(current_user.tasks.where(status: "Pending"))
+      @tasks = current_user.tasks.where('deadline < ?', Date.current).order('status ASC').and(current_user.tasks.where(status: "Pending"))
     else
-      @tasks = current_user.tasks.where('deadline < ?', Date.today).order('status ASC').and((current_user.tasks.where(status: "Pending")).or((current_user.tasks.where(status: "On-going"))))
+      @tasks = current_user.tasks.where('deadline < ?', Date.current).order('status ASC').and((current_user.tasks.where(status: "Pending")).or((current_user.tasks.where(status: "On-going"))))
     end
   end
 
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
       # @tasks = current_user.categories.find(params[:category_id]).tasks.order('status ASC')
       # @tasks = Category.find(params[:category_id]).tasks.order('status ASC')
     elsif params[:sort] == "specific_category_tasks_today"
-      @tasks = @category.tasks.where(deadline: Date.today).and((@category.tasks.where(status: "Pending")).or((@category.tasks.where(status: "On-going"))))
+      @tasks = @category.tasks.where(deadline: Date.current).and((@category.tasks.where(status: "Pending")).or((@category.tasks.where(status: "On-going"))))
     elsif params[:sort] == "specific_category_tasks_pending"
       @tasks = @category.tasks.order('deadline ASC').where(status: "Pending")
     elsif params[:sort] == "specific_category_tasks_ongoing"
