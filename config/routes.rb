@@ -7,5 +7,15 @@ Rails.application.routes.draw do
   
   resources :categories do
     resources :tasks
+    # do
+    # collection do
+    #   get 'due_today'
+    # end
+
+    # for this category lang
   end
+  get "/tasks/due_today", to: "tasks#due_today"
+  # di na need ng category id kasi di naman to kasali sa nested routes
+  # nil ang value ng params[:category_id] dito kasi wala naman params na category id yung route na to
+  get "/tasks/backlog", to: "tasks#backlog"
 end

@@ -42,10 +42,15 @@
   <%= link_to "Back to Categories", categories_path, class: "btn btn-outline-dark btn-sm" %> 
 </p>
 <div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    <li class="list-group-item"> <%= link_to "Sort by Deadline", :sort => "deadline" %> </li>
-    <li class="list-group-item"> <%= link_to "Sort by Status", :sort => "task_status" %> </li>
-  </div>
+    <ul class="list-group list-group-horizontal">
+      <li class="list-group-item text-nowrap"><%= link_to "View All Tasks", category_tasks_path %></li>
+      <li class="list-group-item text-nowrap"><%= link_to "Due Today", :sort => "specific_category_tasks_today"%></li>
+      <li class="list-group-item text-nowrap"><%= link_to "Status: On-going", :sort => "specific_category_tasks_ongoing"%></li>
+      <li class="list-group-item text-nowrap"><%= link_to "Status: Pending", :sort => "specific_category_tasks_pending"%></li>
+      <li class="list-group-item text-nowrap"><%= link_to "Status: Done", :sort => "specific_category_tasks_done"%></li>
+      <li class="list-group-item text-nowrap"><%= link_to "Sort By Deadline" %></li>
+      <li class="list-group-item text-nowrap"><%= link_to "Sort Tasks by Status", :sort => "task_status" %></li>
+    </ul>
 </div>
 
 <br/>

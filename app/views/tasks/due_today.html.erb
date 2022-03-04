@@ -1,0 +1,49 @@
+<h1> All Tasks: Due Today </h1>
+
+<table class="table table-bordered table-hover">
+   <thead class="table-dark">
+    <tr>
+      <th class="text-nowrap"> Task </th>
+      <th class="text-nowrap"> Details </th>
+      <th class="text-nowrap"> Date Created </th>
+      <th class="text-nowrap"> Date Updated </th>
+      <th class="text-nowrap"> Deadline  </th>
+      <th class="text-nowrap"> Status </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+    <% if task.user == current_user %>
+      <tr>
+        <td class="text-nowrap"> <%= link_to task.task_name, category_task_path(task.category_id, task.id) %> </td>
+        <td> <%= task.task_body%> </td>
+        <td class="text-nowrap"> <%= task.created_at %> </td>
+        <td class="text-nowrap"> <%= task.updated_at %> </td>
+        <td class="text-nowrap"> <%= task.deadline %> </td>
+        <td class="text-nowrap"> <%= task.status %> </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+<p>
+  <button class="btn btn-outline-dark btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Sort Tasks
+  </button>
+  <%= link_to "View All Tasks Today", tasks_due_today_path, class:"btn btn-outline-dark btn-sm"  %>
+  <%= link_to "View All Categories", categories_path, class: "btn btn-outline-dark btn-sm" %>
+</p>
+
+<div class="collapse" id="collapseExample">
+    <ul class="list-group">
+      <li class="list-group-item text-nowrap"> <%= link_to "View All Tasks with On-going Status", :sort => "due_today_ongoing",class:"btn btn-outline-dark btn-sm"  %> </li>
+      <li class="list-group-item text-nowrap"> <%= link_to "View All Tasks with Pending Status", :sort => "due_today_pending",class:"btn btn-outline-dark btn-sm"  %> </li>
+    </ul>
+</div>
+
+<br/>
