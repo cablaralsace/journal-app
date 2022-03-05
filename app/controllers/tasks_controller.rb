@@ -22,6 +22,7 @@ class TasksController < ApplicationController
   end
 
   def backlog
+    # byebug
     if params[:sort] == "backlog_ongoing"
       @tasks = current_user.tasks.where('deadline < ?', Date.current).order('status ASC').and(current_user.tasks.where(status: "On-going"))
     elsif params[:sort] == "backlog_pending"
